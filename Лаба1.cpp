@@ -9,37 +9,37 @@ int main()
 
 	cout << "Эта программа находил угол а, под которым тело брошено по отношению к горизонту, когда известны начальная скорость V и время полёта Т." << endl;
 
-	double V = 0.0;
+	double V;
 
 	do {
 		cout << "Введите скорость V: ";
 		cin >> V;
 
-		if (!cin.good()) {
+		if (!cin.good() || (V < 0) ) {
 			cin.clear();
 			cin.ignore(10, '\n');
-			cout << "Необходимо ввести вещественное число!" << endl;
+			cout << "Необходимо ввести вещественное положительное число!" << endl;
 		}
 		else break;
 	} while (true);
 
-	double T = 0.0;
+	double T;
 
 	do {
 		cout << "Введите время полёта Т: ";
 		cin >> T;
 
-		if (!cin.good()) {
+		if (!cin.good() || (T < 0)) {
 			cin.clear();
 			cin.ignore(10, '\n');
-			cout << "Необходимо ввести вещественное число!" << endl;
+			cout << "Необходимо ввести вещественное положительнон число!" << endl;
 		}
 		else break;
 	} while (true);
 
-	int g = 10; 
+	int g = 10;
 
-	double angle = 0;
+	double angle;
 	const double PI = 3.141592653589793;
 	angle = asin((g * T) / (2 * V)) * (180 / PI);
 
