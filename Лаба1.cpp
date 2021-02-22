@@ -20,7 +20,7 @@ int main()
 			cin.ignore(10, '\n');
 			cout << "Необходимо ввести вещественное положительное число!" << endl;
 		}
-		else break;
+		else {break;}
 	} while (true);
 
 	double T;
@@ -34,7 +34,7 @@ int main()
 			cin.ignore(10, '\n');
 			cout << "Необходимо ввести вещественное положительнон число!" << endl;
 		}
-		else break;
+		else {break;}
 	} while (true);
 
 	int g = 10;
