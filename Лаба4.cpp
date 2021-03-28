@@ -16,7 +16,7 @@ int main()
 	cout << "Введите количество чисел из последовательсти: " << endl;
 	cin >> number;
 
-	for (int i = 0; i <= number; i++) {
+	for (int i = 0; i < number; i++) {
 		cout << fibonacci_sequence(i) << " ";
 	}
 }
