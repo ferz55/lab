@@ -9,13 +9,9 @@ string coder(string text)
     {
         char letter = text[i];
 
-        if ((letter >= 'a' && letter <= 'm') || (letter >= 'A' && letter <= 'M'))
+        if ((letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z'))
         {
             text[i] += 1;
-        }
-        else if ((letter >= 'n' && letter <= 'z') || (letter >= 'N' && letter <= 'Z'))
-        {
-            text[i] -= 1;
         }
     }
 
