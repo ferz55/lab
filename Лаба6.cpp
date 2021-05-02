@@ -51,6 +51,14 @@ void print(Branch* aBranch)
 	tabs--;
 }
 
+void FreeTree(Branch* aBranch)
+{
+	if (!aBranch) return;
+	FreeTree(aBranch->LeftBranch);
+	FreeTree(aBranch->RightBranch);
+	delete aBranch;
+}
+
 int main()
 {
 	Branch* Root = 0;
@@ -62,6 +70,9 @@ int main()
 	}
 
 	print(Root);
+
+
+	FreeTree(Root);
 
 	return 0;
 }
