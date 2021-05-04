@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include <climits>
 #include <cmath>
-#define _USE_MATH_DEFINES
 using namespace std;
 
 class SimpleClass
@@ -9,51 +8,40 @@ class SimpleClass
 public:
 	static int x;
 	static int n;
-	void show();
-} obj1, obj2;
+
+    int factorial(int obj2)
+    {
+        return (obj2 == 0) ? 1 : obj2 * factorial(obj2 - 1);
+    }
+    double cos()
+    {
+        double cos = 0;
+        for (int i = 0; i < 8; i++) {
+            cos += ((pow(-1, i)) * (pow(x, 2 * i))) / factorial(2 * i);
+        }
+        return cos;
+    }
+};
 int SimpleClass::x;
 int SimpleClass::n;
 
-int value()
-{
-	while (true)
-	{
-		cout << "Enter the argument: ";
-		short obj1;
-		cin >> obj1;
-
-		if (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(10, '\n');
-			cout << "The entered value is not correct, please try again " << endl;
-		}
-		else
-		{
-			return obj1;
-		}
-	}
-}
-
-int factorial(int obj2)
-{
-	return (obj2 == 0) ? 1 : obj2 * factorial(obj2 - 1);
-}
-
-double calculations(int obj1)
-{
-	double cos = 0;
-	for (int i = 0; i < 8; i++) {
-		cos += ((pow(-1, i)) * (pow(obj1, 2 * i))) / factorial(2 * i);
-	}
-	return cos;
-}
-
 int main()
 {
-	int obj1 = value();
-	double cos = calculations(obj1);
-	cout << "cos(" << obj1 << ") = " << cos << endl;
-	system ("pause");
-	return 0;
+	setlocale(LC_ALL, "Russian");
+	SimpleClass obj1;
+
+
+    do {
+        cout << "Введите аргумент x: ";
+        cin >> obj1.x;
+
+        if (!cin.good()) {
+            cin.clear();
+            cin.ignore(10, '\n');
+            cout << "Ошибка: на ввод должно поступить значение из поля вещественных чисел.\n" << endl;
+        }
+        else break;
+    } while (true);
+
+    cout << "cos(" << obj1.x << ") = " << obj1.cos();
 }
