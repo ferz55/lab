@@ -38,7 +38,7 @@ int main()
         if (!cin.good()) {
             cin.clear();
             cin.ignore(10, '\n');
-            cout << "Ошибка: на ввод должно поступить значение из поля вещественных чисел.\n" << endl;
+            cout << "Введите число!\n" << endl;
         }
         else break;
     } while (true);
