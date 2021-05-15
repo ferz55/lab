@@ -42,23 +42,3 @@ int main()
 	printArray(charArray, charSize);
 	cout << endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-	for (int i = 0; i < SIZE; i++) {
-		cout << "a[" << i << "]= " << array[i];
-		cout << endl;
-	}
-*/
