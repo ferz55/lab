@@ -1,85 +1,88 @@
-﻿#include <iostream>
+﻿# include <iostream>
+# include <stdlib.h>
+# include <conio.h>
 
-// Re - действительная часть
 using namespace std;
 
-class complex {
-public:
-	double Re, Im;
+struct complex {
+	double a, b;
 };
 
-complex operator+(complex x, complex y) {
-    complex z;
-    z.Re = x.Re + y.Re;
-    z.Im = x.Im + y.Im;
-    return z;
-}
+class Complex {
+	complex comp;
+public:
+	Complex(double x = 0, double y = 0) {
+		comp.a = x;
+		comp.b = y;
+	}
+	Complex operator +(const Complex& c);
+	Complex operator -(const Complex& c);
+	Complex operator *(const Complex& c);
+	Complex operator /(const Complex& c);
+	Complex read();
+	void Display();
+};
 
-complex operator-(complex x, complex y) {
-    complex z;
-    z.Re = x.Re - y.Re;
-    z.Im = x.Im - y.Im;
-    return z;
+Complex Complex::operator +(const Complex& c)
+{
+	Complex z;
+	z.comp.a = comp.a + c.comp.a;
+	z.comp.b = comp.b + c.comp.b;
+	return z;
 }
-
-complex operator*(complex x, complex y) {
-    complex z;
-    z.Re = x.Re * y.Re - x.Im * y.Im;
-    z.Im = x.Im * y.Re + x.Re * y.Im;
-    return z;
+Complex Complex::operator -(const Complex& c) {
+	Complex z;
+	z.comp.a = comp.a - c.comp.a;
+	z.comp.b = comp.b - c.comp.b;
+	return z;
 }
-
-complex operator/(complex x, complex y) {
-    complex z;
-    z.Re = (x.Re * y.Re + x.Im * y.Im) / (y.Re * y.Re + y.Im * y.Im);
-    z.Im = (x.Im * y.Re - x.Re * y.Im) / (y.Re * y.Re + y.Im * y.Im);
-    return z;
+Complex Complex::operator *(const Complex& c) {
+	Complex z;
+	z.comp.a = comp.a * c.comp.a - comp.b * c.comp.b;
+	z.comp.b = comp.a * c.comp.b + comp.b * c.comp.a;
+	return z;
 }
-
+Complex Complex::operator /(const Complex& c) {
+	Complex z;
+	z.comp.a = (comp.a * c.comp.a + comp.b * c.comp.b) / (comp.a * comp.a + comp.b * comp.b);
+	z.comp.b = (comp.b * c.comp.a - comp.a * c.comp.b) / (comp.a * comp.a + comp.b * comp.b);
+	return z;
+}
+void Complex::Display() {
+	if (comp.b >= 0)
+		cout << comp.a << "+" << comp.b << "i\n";
+	else
+		cout << comp.a << comp.b << "i\n";
+}
+Complex Complex::read() {
+	double x, y;
+	cout << "Действительная часть: ";
+	cin >> x;
+	cout << "Мнимая часть:        : ";
+	cin >> y;
+	Complex a = Complex(x, y);
+	return a;
+}
 int main()
 {
-    setlocale(LC_ALL, "Russian");
+	setlocale(LC_ALL, "Russian");
+	Complex a, b, c;
+	cout << "Первое число:" << endl;
+	a = a.read();
+	cout << "Второе число:" << endl;
+	b = b.read();
 
+	c = a + b;
+	c.Display();
 
-	complex a,b,c;
-    cout << "Действительнвая часть 1-го числа: " << endl;
-    cin >> a.Re;
-    cout << "Мнимая часть 1-го числа:        : " << endl;
-    cin >> a.Im;
+	c = a - b;
+	c.Display();
 
-    cout << "Действительнвая часть 2-го числа: " << endl;
-    cin >> b.Re;
-    cout << "Мнимая часть 2-го числа:        : " << endl;
-    cin >> b.Im;
-    c = a + b;
+	c = a * b;
+	c.Display();
 
-    cout << "Результаты сложения:" << endl;
-    cout << c.Re << "+" << c.Im << "i" << endl;
+	c = a / b;
+	c.Display();
 
-
-    c = a - b;
-
-    cout << "Результаты вычитания:" << endl;
-    if (b.Im >= a.Im) {
-        cout << c.Re << c.Im << "i" << endl;
-    }
-    else {
-        cout << c.Re << "+" << c.Im << "i" << endl;
-    }
-
-    c = a * b;
-
-    cout << "Результаты умножения:" << endl;
-    cout << c.Re << "+" << c.Im << "i" << endl;
-
-    c = a / b;
-
-    cout << "Результат деления:" << endl;
-    if (b.Im >= a.Im) {
-        cout << c.Re << c.Im << "i" << endl;
-    }
-    else {
-        cout << c.Re << "+" << c.Im << "i" << endl;
-    }
-
+	return 0;
 }
